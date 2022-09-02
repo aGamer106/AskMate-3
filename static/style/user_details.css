@@ -1,0 +1,12 @@
+table{
+    align-self: center;
+    margin: 30px;
+
+}
+
+#user_details {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}

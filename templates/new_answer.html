@@ -1,0 +1,31 @@
+{% extends 'base_template.html' %}
+{% block title %}
+    Add New Answer
+{% endblock %}
+
+{% block style %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+    <h1 align="center">Add a new Answer</h1>
+    <p align="center" style="color: white">Drop a new answer down below:</p>
+    <div class="container">
+    <form action="{{ url_for("add_new_answer", question_id=question_id) }}" method="post" enctype="multipart/form-data" id="edit_form">
+        <label for="answer_title"
+            >Answer:</label
+        >
+        <textarea
+            id="answer_title"
+            name="answer_title"
+            rows="1"
+            cols="60"
+        ></textarea>
+            <button type="submit">
+                <span>Drop Answer</span>
+            </button>
+    </form>
+        </div>
+{% endblock %}
+

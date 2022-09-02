@@ -1,0 +1,4 @@
+id INTEGER DEFAULT nextval('users_id_seq'::regclass)
+username text
+password text
+registration_date date default CURRENT_DATE

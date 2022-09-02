@@ -1,0 +1,136 @@
+{% extends 'base_template.html' %}
+
+{% block title %}
+    Question {{ question_id }}
+{% endblock %}
+
+{% block style %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        table, td, th{
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        td, th{
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<h1 align="center">See the chosen question down below:</h1>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Question ID</th>
+            <th>Title</th>
+            <th>Message</th>
+            <th>Add a new Answer</th>
+            <th>Add comment</th>
+            <th>Edit question</th>
+            <th>Delete</th>
+            <th>Submitted by</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+            <td>{{ user_questions.id }}</td>
+            <td>{{ user_questions.title }}</td>
+            <td>{{ user_questions.message }}</td>
+            <td><a href="{{ url_for('add_new_answer', question_id=user_questions.id) }}">Add Answer</a></td>
+            <td><a href="{{ url_for('add_new_comment', question_id=user_questions.id) }}">Add Comment</a></td>
+            <td><a href="{{ url_for('edit_question', question_id=user_questions.id) }}">Edit Question</a></td>
+            <td><a href="{{ url_for('delete_question', question_id=user_questions.id) }}">&#128465;</a></td>
+                <td>{{ user_questions.username }}</td>
+            </tr>
+    </tbody>
+    </table>
+    {% if question_comments %}
+    <table>
+        <thead>
+            <tr>
+                <th>Question Comment ID</th>
+                <th>Message</th>
+                <th>Submission Time</th>
+                <th>Edited count</th>
+                <th>Edit comm</th>
+                <th>Delete comment</th>
+                <th>Submitted by</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in question_comments %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.message }}</td>
+                <td>{{ i.submission_time }}</td>
+                <td>{{ i.edited_count }}</td>
+                <td><a href="{{ url_for('edit_question_comments', question_id=user_questions.id, comment_id=i.id) }}">
+                    Edit Comment</a></td>
+                <td><a href="{{ url_for('delete_comment', comment_id=i.id) }}">&#128465;</a></td>
+                <td>{{ i.username }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+<div class="container mt-3">
+  {% for entry in answers %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Answer ID</th>
+      <th scope="col">Message</th>
+      <th scope="col">Submission Time</th>
+        <th>Add Comment</th>
+        <th>Edit Answer</th>
+        <th>Delete Answer</th>
+        <th>Submitted by</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">{{ entry.id }}</td>
+      <td>{{ entry.message }}</td>
+      <td>{{ entry.submission_time }}</td>
+        <td><a href="{{ url_for('add_new_answer_comment', answer_id=entry.id, question_id=user_questions.id) }}">Add Comment</a></td>
+        <td><a href="{{ url_for('edit_answer', answer_id=entry.id, question_id=user_questions.id) }}">Edit Answer</a></td>
+        <td><a href="{{ url_for('delete_answer', answer_id=entry.id )}}">&#128465;</a></td>
+        <td>{{ entry.username }}</td>
+    </tr>
+  </tbody>
+</table>
+      {% if entry.comments %}
+<table>
+    <tr>
+        <th>Comment ID</th>
+        <th>Message</th>
+        <th>Submission Time</th>
+        <th>Edit Count</th>
+        <th>Edit Comments</th>
+        <th>Delete comment</th>
+        <th>Submitted By</th>
+    </tr>
+    <tbody>
+    {% for i in entry.comments %}
+    <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.message }}</td>
+        <td>{{ i.submission_time }}</td>
+        <td>{{ i.edited_count }}</td>
+     <td><a href="{{ url_for('edit_question_comments', question_id=user_questions.id, comment_id=i.id) }}">Edit Comment</a></td>
+     <td><a href="{{ url_for('delete_comment', comment_id=i.id) }}">&#128465;</a></td>
+        <td>{{ i.username }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table><br>
+      {% endif %}
+  {% endfor %}
+
+
+    </div>
+{% endblock %}

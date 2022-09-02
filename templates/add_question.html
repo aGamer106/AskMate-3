@@ -1,0 +1,55 @@
+{% extends 'base_template.html' %}
+
+{% block title %} Add Question {% endblock %}
+{% block style %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+
+<h1 align="center">Add a new Question</h1>
+    <p align="center">Please be extremely specific when adding a new question: specify both the title as well as the message.</p>
+        <form enctype="multipart/form-data" method="post" id="edit_form">
+    <p align="center">
+        <label for="question_title"
+            >Question title:</label
+        >
+    </p>
+    <p align="center">
+        <textarea
+            id="question_title"
+            name="question_title"
+            rows="1"
+            cols="60"
+        ></textarea>
+    </p>
+    <p align="center">
+        <label for="question">Question message:</label>
+    </p>
+    <p align="center">
+        <textarea
+            id="question"
+            name="question"
+            rows="1"
+            cols="60"
+        ></textarea>
+    </p>
+    <p align="center">
+        <label for="file">Add image if needed:</label>
+    </p>
+    <p align="center">
+        <input
+            name="file"
+            id="file"
+            type="file"
+            accept="image/*"
+            alt="Add question image"
+        />
+    </p>
+    <p align="center">
+        <button type="submit">Add question</button>
+    </p>
+        </form>
+
+{% endblock %}

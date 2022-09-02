@@ -1,0 +1,32 @@
+{% extends 'base_template.html' %}
+{% block title %}
+Users
+{% endblock %}
+
+{% block content %}
+
+<h1 align="center">List of all the users:</h1>
+<table align="center">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Registration Date</th>
+            <th>Number of asked questions</th>
+            <th>Number of answers given</th>
+            <th>Number of dropped comments</th>
+{#            <th>Reputation</th>#}
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in users %}
+        <tr><td><a href="{{ url_for('get_user_details', user_id=i.id) }}">{{ i.username }}</a></td>
+            <td>{{ i.registration_date }}</td>
+            <td>{{ i.number_of_questions }}</td>
+            <td>{{ i.number_of_answers }}</td>
+            <td>{{ i.number_of_comments }}</td>
+{#            <td>{{ i.reputation }}</td>#}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

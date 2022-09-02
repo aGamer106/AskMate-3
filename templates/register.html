@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Account</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/forms.css') }}">
+        <link href="{{ url_for('static', filename='style/background.css') }}" rel="stylesheet">
+</head>
+<body>
+<img src="{{ url_for('static', filename='4.png') }}" id="background">
+<div>
+    <form method="post" id="register_form">
+        {% if message %}
+            <p>
+                {{ message }}
+            </p>
+        {% endif %}
+        <div class="imgcontainer">
+            <img src="{{ url_for('static', filename='avatar.png') }}" alt="Avatar" class="avatar">
+        </div>
+        <label for="username">Enter an Email:</label>
+            <input name="username" type="email" placeholder="Username..." id="username">
+        <label for="password">Create a password:</label>
+            <input name="password" type="password" placeholder="Password..." id="password">
+        <button type="submit">Sign Up</button>
+        <div>
+            <p style="color: #ffffff">Already have an account ? <a style="color: limegreen" href="{{ url_for('login_form') }}">Login</a></p>
+        </div>
+    </form>
+    </div>
+</body>
+</html>

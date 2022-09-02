@@ -1,0 +1,88 @@
+{% extends 'base_template.html' %}
+{% block title %}
+User Details
+{% endblock %}
+{% block style %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/user_details.css') }}">
+{% endblock %}
+{% block content %}
+    <div id="user_details">
+    <h1 align="center">User Details</h1>
+<table align="center">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Registration Date</th>
+            <th>Number of asked questions</th>
+            <th>Number of answers given</th>
+            <th>Number of dropped comments</th>
+{#            <th>Reputation</th>#}
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr><td><a href="/users/{{ user.id }}">{{ user.username }}</a></td>
+            <td>{{ user.registration_date }}</td>
+            <td>{{ user.number_of_questions }}</td>
+            <td>{{ user.number_of_answers }}</td>
+            <td>{{ user.number_of_comments }}</td>
+{#            <td>{{ i.reputation }}</td>#}
+            </tr>
+
+    </tbody>
+</table>
+<table>
+    <thead>
+        <tr>
+            <th>Question ID</th>
+            <th>Question</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in user.questions %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td><a href="{{ url_for('question', question_id=i.id) }}">{{ i.message }}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Answer ID</th>
+            <th>Answer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in user.answers %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td><a href="{{ url_for('question', question_id=i.question_id) }}">{{ i.message }}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Comment ID</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in user.comments %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td><a href="{{ url_for('question', question_id=i.link_question_id) }}">{{ i.message }}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    </div>
+
+{% endblock %}

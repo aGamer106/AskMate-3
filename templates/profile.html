@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link href="{{ url_for('static', filename='style/background.css') }}" rel="stylesheet">
+</head>
+<body>
+<img src="{{ url_for('static', filename='4.png') }}" id="background">
+
+<form action="{{ url_for('profile_form') }}" method="post">
+    <h1>Login Successful!</h1>
+    <label>Welcome to your profile!</label><br><br>
+    <button type="submit">Logout</button>
+</form>
+
+</body>
+</html>

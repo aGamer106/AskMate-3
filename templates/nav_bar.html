@@ -1,0 +1,15 @@
+<div class="navbar-div">
+    <nav class="navbar-custom">
+        <a class="navar-left-button" href="/">
+            Home
+        </a>
+        <a class="navar-left-button" href="/list">List</a>
+        <a href="{{ url_for('add_question') }}" class="navar-left-button">Add a Question</a>
+        <a href="{{ url_for('see_users') }}" class="navar-left-button">Users</a>
+        <form action="{{ url_for('search') }}" class="search-form">
+        <input type="text" placeholder="Search here..." name="q">
+            <button type="submit">Search</button>
+        </form>
+        <a class="navar-right-button" href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+</div>
